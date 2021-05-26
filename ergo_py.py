@@ -9,6 +9,7 @@ class ErgoAPI:
         self.block_url = '/api/v0/blocks/'
         self.info_url = '/api/v0/info'
         self.status_url = '/api/v0/stats'
+        self.tokens_url = '/api/v1/tokens'
 
     def get_complete_address(self, address:str) -> str:
         """ Get complete info about a address
@@ -55,6 +56,22 @@ class ErgoAPI:
         try:
             response = requests.get(self.main_url + self.info_url)
             return json.loads(response.content.decode())
+        except Exception as error:
+            print(error)
+
+    def get_tokens(self):
+        """ Get tokens"""
+        try:
+            response = requests.get(self.main_url + self.tokens_url)
+            return json.loads(response.content.decode())['items']
+        except Exception as error:
+            print(error)
+
+    def get_total_tokens(self):
+        """ Get total number of tokens"""
+        try:
+            response = requests.get(self.main_url + self.tokens_url)
+            return json.loads(response.content.decode())['total']
         except Exception as error:
             print(error)
     
