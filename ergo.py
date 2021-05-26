@@ -6,6 +6,7 @@ class ErgoAPI:
         """ Initialize API """
         self.main_url = 'https://api.ergoplatform.com'
         self.address_url = '/api/v0/addresses/'
+        self.tx_url = '/api/v0/transactions/'
         self.block_url = '/api/v0/blocks/'
         self.info_url = '/api/v0/info'
         self.status_url = '/api/v0/stats'
@@ -27,7 +28,17 @@ class ErgoAPI:
         try:
             url = self.main_url + self.address_url
             response = requests.get(url + address)
-            return json.loads(response.content.decode())['transactions']['confirmedBalance']
+            return str(json.loads(response.content.decode())['transactions']['confirmedBalance'])
+        except Exception as error:
+            print(error)
+
+    def get_transaction(self, transaction:str) -> str:
+        """ Get address confirmed balance
+        :param str transaction: Transaction Hash """
+        try:
+            url = self.main_url + self.tx_url
+            response = requests.get(url + transaction)
+            return json.loads(response.content.decode())
         except Exception as error:
             print(error)
 
