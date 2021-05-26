@@ -33,12 +33,22 @@ class ErgoAPI:
             print(error)
 
     def get_transaction(self, transaction:str) -> str:
-        """ Get address confirmed balance
+        """ Get transaction data
         :param str transaction: Transaction Hash """
         try:
             url = self.main_url + self.tx_url
             response = requests.get(url + transaction)
             return json.loads(response.content.decode())
+        except Exception as error:
+            print(error)
+
+    def get_transaction_confirmations(self, transaction:str) -> str:
+        """ Get number of confirmations of a transaction
+        :param str transaction: Transaction Hash """
+        try:
+            url = self.main_url + self.tx_url
+            response = requests.get(url + transaction)
+            return json.loads(response.content.decode())['summary']['confirmationsCount']
         except Exception as error:
             print(error)
 
