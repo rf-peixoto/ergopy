@@ -72,7 +72,7 @@ class ErgoAPI:
         except Exception as error:
             print(error)
 
-    def get_blockchain_info(self):
+    def get_blockchain_info(self) -> dict:
         """ Get blockchain info like hashrate, supply, etc"""
         try:
             response = requests.get(self.main_url + self.info_url)
@@ -80,7 +80,7 @@ class ErgoAPI:
         except Exception as error:
             print(error)
 
-    def get_tokens(self):
+    def get_tokens(self) -> dict:
         """ Get tokens"""
         try:
             response = requests.get(self.main_url + self.tokens_url)
@@ -88,7 +88,7 @@ class ErgoAPI:
         except Exception as error:
             print(error)
 
-    def get_total_tokens(self):
+    def get_total_tokens(self) -> int:
         """ Get total number of tokens"""
         try:
             response = requests.get(self.main_url + self.tokens_url)
@@ -96,7 +96,7 @@ class ErgoAPI:
         except Exception as error:
             print(error)
     
-    def get_hash_rate(self):
+    def get_hash_rate(self) -> int:
         """ Get actual hashrate"""
         try:
             response = requests.get(self.main_url + self.info_url)
@@ -104,7 +104,7 @@ class ErgoAPI:
         except Exception as error:
             print(error)
 
-    def get_supply(self):
+    def get_supply(self) -> int:
         """ Get actual supply"""
         try:
             response = requests.get(self.main_url + self.info_url)
