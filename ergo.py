@@ -12,7 +12,7 @@ class ErgoAPI:
         self.status_url = '/api/v0/stats'
         self.tokens_url = '/api/v1/tokens'
 
-    def get_complete_address(self, address:str) -> str:
+    def get_complete_address(self, address:str) -> dict:
         """ Get complete info about a address
         :param str address: Address """
         try:
@@ -22,17 +22,17 @@ class ErgoAPI:
         except Exception as error:
             print(error)
 
-    def get_address_balance(self, address:str) -> str:
+    def get_address_balance(self, address:str) -> dict:
         """ Get address confirmed balance
         :param str address: Address """
         try:
             url = self.main_url + self.address_url
             response = requests.get(url + address)
-            return str(json.loads(response.content.decode())['transactions']['confirmedBalance'])
+            return json.loads(response.content.decode())['transactions']['confirmedBalance']
         except Exception as error:
             print(error)
 
-    def get_transaction(self, transaction:str) -> str:
+    def get_transaction(self, transaction:str) -> dict:
         """ Get transaction data
         :param str transaction: Transaction Hash """
         try:
@@ -42,7 +42,7 @@ class ErgoAPI:
         except Exception as error:
             print(error)
 
-    def get_transaction_confirmations(self, transaction:str) -> str:
+    def get_transaction_confirmations(self, transaction:str) -> int:
         """ Get number of confirmations of a transaction
         :param str transaction: Transaction Hash """
         try:
@@ -52,7 +52,7 @@ class ErgoAPI:
         except Exception as error:
             print(error)
 
-    def get_complete_block(self, block:str) -> str:
+    def get_complete_block(self, block:str) -> dict:
         """ Get block data
         :param str block: Block """
         try:
@@ -62,7 +62,7 @@ class ErgoAPI:
         except Exception as error:
             print(error)
 
-    def get_block_ref(self, block:str) -> str:
+    def get_block_ref(self, block:str) -> dict:
         """ Get block references
         :param str block: Block """
         try:
