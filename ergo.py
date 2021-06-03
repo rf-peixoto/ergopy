@@ -6,6 +6,7 @@ class ErgoAPI:
         """ Initialize API """
         self.main_url = 'https://api.ergoplatform.com'
         self.address_url = '/api/v0/addresses/'
+        self.issuing_boxes_url = '/api/v0/assets/issuingBoxes'
         self.tx_url = '/api/v0/transactions/'
         self.block_url = '/api/v0/blocks/'
         self.info_url = '/api/v0/info'
@@ -95,12 +96,20 @@ class ErgoAPI:
             return json.loads(response.content.decode())['total']
         except Exception as error:
             print(error)
-    
+
     def get_hash_rate(self) -> int:
         """ Get actual hashrate"""
         try:
             response = requests.get(self.main_url + self.info_url)
             return json.loads(response.content.decode())['hashRate']
+        except Exception as error:
+            print(error)
+
+    def get_issuing_boxes(self) -> dict:
+        """ Get issuing boxes"""
+        try:
+            response = requests.get(self.main_url + self.issuing_boxes_url)
+            return json.loads(response.content.decode())
         except Exception as error:
             print(error)
 
