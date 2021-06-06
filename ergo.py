@@ -4,7 +4,6 @@ import json
 class ErgoAPI:
     def __init__(self) -> None:
         """ Initialize API """
-        self.donate_address = '9ftyziirHpu7PqPkdTG8jvxNDhb44tGL34mbHan2aKWCP4vfrDX'
         self.main_url = 'https://api.ergoplatform.com'
         self.address_url = '/api/v0/addresses/'
         self.issuing_boxes_url = '/api/v0/assets/issuingBoxes'
@@ -13,6 +12,14 @@ class ErgoAPI:
         self.info_url = '/api/v0/info'
         self.status_url = '/api/v0/stats'
         self.tokens_url = '/api/v1/tokens'
+        self.donate_address = '9ftyziirHpu7PqPkdTG8jvxNDhb44tGL34mbHan2aKWCP4vfrDX'
+        self.ergo_links = {'site':'https://ergoplatform.org/', 'documents':'https://ergoplatform.org/en/documents/',
+                           'forum':'https://www.ergoforum.org/', 'faq':'https://ergoplatform.org/en/faq/',
+                           'mining':'https://ergoplatform.org/en/mining/', 'get_started':'https://ergoplatform.org/en/about/',
+                           'basics':'https://ergoplatform.org/en/basics/', 'wallets':'https://ergoplatform.org/en/wallets/',
+                           'news':'https://ergoplatform.org/en/news/', 'blog':'https://ergoplatform.org/en/blog/',
+                           'code':'https://github.com/ergoplatform', 'awesome-ergo':'https://github.com/ergoplatform/awesome-ergo',
+                           'explorer':'https://explorer.ergoplatform.com/en/'}
 
     def get_complete_address(self, address:str) -> dict:
         """ Get complete info about a address
