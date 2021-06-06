@@ -4,6 +4,7 @@ import json
 class ErgoAPI:
     def __init__(self) -> None:
         """ Initialize API """
+        self.donate_address = '9ftyziirHpu7PqPkdTG8jvxNDhb44tGL34mbHan2aKWCP4vfrDX'
         self.main_url = 'https://api.ergoplatform.com'
         self.address_url = '/api/v0/addresses/'
         self.issuing_boxes_url = '/api/v0/assets/issuingBoxes'
