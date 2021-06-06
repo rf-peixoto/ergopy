@@ -2,7 +2,7 @@ import requests
 import json
 
 class ErgoAPI:
-    def __init__(self):
+    def __init__(self) -> None:
         """ Initialize API """
         self.main_url = 'https://api.ergoplatform.com'
         self.address_url = '/api/v0/addresses/'
