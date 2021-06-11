@@ -1,9 +1,11 @@
+from pycoingecko import CoinGeckoAPI
 import requests
 import json
 
 class ErgoAPI:
     def __init__(self) -> None:
         """ Initialize API """
+        self.coingecko = CoinGeckoAPI()
         self.main_url = 'https://api.ergoplatform.com'
         self.address_url = '/api/v0/addresses/'
         self.issuing_boxes_url = '/api/v0/assets/issuingBoxes'
@@ -20,6 +22,13 @@ class ErgoAPI:
                            'news':'https://ergoplatform.org/en/news/', 'blog':'https://ergoplatform.org/en/blog/',
                            'code':'https://github.com/ergoplatform', 'awesome-ergo':'https://github.com/ergoplatform/awesome-ergo',
                            'explorer':'https://explorer.ergoplatform.com/en/'}
+        
+    def get_erg_usd_price(self) -> float:
+        """ Get ERG USD price """
+        try:
+            return self.coingecko.get_price(ids='ergo', vs_currencies='usd')['ergo']['usd']
+        except Exception as error:
+            print(error)
 
     def get_complete_address(self, address:str) -> dict:
         """ Get complete info about a address
