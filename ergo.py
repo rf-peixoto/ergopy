@@ -31,6 +31,18 @@ class ErgoAPI:
         except Exception as error:
             print(error)
 
+    def get_historical_data(from_ts:str, to_ts:str, symbol:str, id='ergo') -> dict:
+        """ Get historical data
+        :param str from_ts: Initial date in timestamp
+        :param str to_s: End date in timestamp
+        :param str symbol: Currency symbol (usd, eur...) """
+        try:
+            return json.loads(ergo.coingecko.get_coin_market_chart_range_by_id(id='ergo', vs_currency=symbol,
+                                                                               from_timestamp=from_ts,
+                                                                               to_timestamp=to_ts))
+        except Exception as error:
+            print(error)
+
     def get_complete_address(self, address:str) -> dict:
         """ Get complete info about a address
         :param str address: Address """
