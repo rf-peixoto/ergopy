@@ -31,7 +31,7 @@ class ErgoAPI:
         except Exception as error:
             print(error)
 
-    def get_historical_data(from_ts:str, to_ts:str, symbol:str, id='ergo') -> dict:
+    def get_historical_data(from_ts:str, to_ts:str, symbol:str) -> dict:
         """ Get historical data
         :param str from_ts: Initial date in timestamp
         :param str to_s: End date in timestamp
