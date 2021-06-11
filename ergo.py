@@ -23,10 +23,11 @@ class ErgoAPI:
                            'code':'https://github.com/ergoplatform', 'awesome-ergo':'https://github.com/ergoplatform/awesome-ergo',
                            'explorer':'https://explorer.ergoplatform.com/en/'}
         
-    def get_erg_usd_price(self) -> float:
-        """ Get ERG USD price """
+    def get_current_price(self, symbol:str) -> float:
+        """ Get ERG price
+        :param str symbol: Currency symbol. Ex: 'usd', 'eur', 'jpy', 'btc'... """
         try:
-            return self.coingecko.get_price(ids='ergo', vs_currencies='usd')['ergo']['usd']
+            return self.coingecko.get_price(ids='ergo', vs_currencies=symbol)['ergo'][symbol]
         except Exception as error:
             print(error)
 
