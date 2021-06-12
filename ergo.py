@@ -14,6 +14,8 @@ class ErgoAPI:
         self.info_url = '/api/v0/info'
         self.status_url = '/api/v0/stats'
         self.tokens_url = '/api/v1/tokens'
+        self.boxes_unspent_byTokenId = '/api/v1/boxes/unspent/byTokenId/'
+        self.boxes_byTokenId = '/api/v1/boxes/byTokenId/'
         self.donate_address = '9ftyziirHpu7PqPkdTG8jvxNDhb44tGL34mbHan2aKWCP4vfrDX'
         self.ergo_links = {'site':'https://ergoplatform.org/', 'documents':'https://ergoplatform.org/en/documents/',
                            'forum':'https://www.ergoforum.org/', 'faq':'https://ergoplatform.org/en/faq/',
@@ -148,5 +150,25 @@ class ErgoAPI:
         try:
             response = requests.get(self.main_url + self.info_url)
             return json.loads(response.content.decode())['supply']
+        except Exception as error:
+            print(error)
+
+    def get_boxes_unspent_byTokenId(self, TokenId:str) -> dict:
+        """ Get complete info about unspent boxes by TokenId
+        :param str TokenId: TokenId """
+        try:
+            url = self.main_url + self.boxes_unspent_byTokenId
+            response = requests.get(url + TokenId)
+            return json.loads(response.content.decode())
+        except Exception as error:
+            print(error)
+
+    def get_boxes_byTokenId(self, TokenId:str) -> dict:
+        """ Get complete info about boxes by TokenId
+        :param str TokenId: TokenId """
+        try:
+            url = self.main_url + self.boxes_byTokenId
+            response = requests.get(url + TokenId)
+            return json.loads(response.content.decode())
         except Exception as error:
             print(error)
